@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News 3 - The Hour News</title>
+  <style>
+    :root { --blue:#1f65c2; --text:#111827; }
+    * { box-sizing:border-box; }
+    body {
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      margin:0; color:var(--text);
+    }
+    header { background:var(--blue); color:#fff; padding:14px 20px; }
+    header h1 { margin:0; font-size:1.6rem; font-weight:800; }
+    main { max-width:900px; margin:28px auto; padding:0 20px; line-height:1.65; }
+    a { color:#1f65c2; font-weight:700; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .meta { color:#6b7280; font-size:.95rem; margin:.25rem 0 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>False Alarms: Climate Scare Stories Debunked</h1>
+  </header>
+  <main>
+    <p>
+    For more than 20 years, climate campaigning has relied heavily on alarming imagery and dire predictions. At the turn of the century, the polar bear became a symbol of climate apocalypse, with Al Gore’s An Inconvenient Truth showing one drifting to its death. Activists warned of polar bears’ extinction by 2012, yet global numbers have doubled since the 1960s to around 26,000, largely due to reduced hunting.
+  </p>
+
+  <p>
+    Similar predictions surrounded Australia’s Great Barrier Reef. In 2012, media and scientists claimed it would be devastated within a decade. The Guardian even ran an obituary. Yet official data show coral cover at record highs in the past three years, with 2024 the best since monitoring began in 1985.
+  </p>
+
+  <p>
+    For decades, campaigners warned that Pacific islands like Tuvalu were sinking. But research indicates most atolls are expanding, with land area increasing as coral sand builds faster than erosion.
+  </p>
+
+  <p>
+    More recently, extreme heat has become the headline threat. While heat kills about 6,000 Americans annually, extreme cold claims around 152,000 lives, and heat-related deaths have declined nearly 10% per decade thanks to air conditioning.
+  </p>
+
+  <p>
+    These examples suggest that climate dangers are often overstated, fuelling costly policies driven more by fear than evidence.
+  </p>
+    <p><a href="index.html">← Back to Home</a></p>
+  </main>
+
+  <script>
+(function () {
+  // helper to send messages to Qualtrics parent
+  function emit(name, payload) {
+    try {
+      var base = { href: location.href, path: location.pathname, title: document.title };
+      if (payload) for (var k in payload)
+        if (Object.prototype.hasOwnProperty.call(payload, k)) base[k] = payload[k];
+      window.parent.postMessage({ type: 'news_event', name: name, payload: base, t: Date.now() }, '*');
+    } catch (e) {}
+  }
+
+  // 1) page view
+  emit('page_view', {});
+
+  // 2) dwell time heartbeat (every 5s)
+  var visible = true;
+  var seconds = 0;
+  var hb = setInterval(function () {
+    if (!visible) return;
+    seconds += 5;
+    emit('heartbeat', { seconds: seconds });
+  }, 5000);
+
+  document.addEventListener('visibilitychange', function () {
+    visible = (document.visibilityState === 'visible');
+  });
+
+  // 3) final flush when navigating away
+  window.addEventListener('pagehide', function () {
+    try { clearInterval(hb); } catch (e) {}
+    emit('final_heartbeat', { seconds: seconds });
+  });
+})();
+</script>
+</body>
+</html>
