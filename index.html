@@ -7,50 +7,54 @@
   <style>
     :root { --blue:#1f65c2; --text:#111827; --muted:#4b5563; --bg:#fff; }
     * { box-sizing:border-box; margin:0; padding:0; }
-    html,body { height:100%; overflow:auto; background:var(--bg);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
-    header { background:var(--blue); color:#fff; padding:10px 20px; }
+
+    /* Mobile-friendly scrolling inside the iframe */
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+    }
+
+    header { background: var(--blue); color:#fff; padding:10px 20px; }
     header h1 { font-size:2.5rem; font-weight:700; }
-    main { height:calc(100vh - 60px); display:grid; grid-template-columns:1fr 1fr;
-      padding:10px 20px; gap:30px 30px; }
+
+    main {
+      height: auto;                               /* allow natural height */
+      min-height: calc(100dvh - 60px);            /* viewport-safe on mobile */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      padding: 10px 20px;
+    }
+
+    /* Stack to one column on small screens */
+    @media (max-width: 640px) {
+      main { grid-template-columns: 1fr; }
+    }
+
     article { display:flex; flex-direction:column; }
-    article h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 8px;   /* more space below title */
-}
+    article h3 { font-size:1.2rem; font-weight:700; margin-bottom:8px; }
+    article p { font-size:.95rem; color:var(--muted); line-height:1.5; margin-bottom:12px; }
+    .read-more { font-size:.85rem; font-weight:700; color:#0b3ea9; text-decoration:none; }
 
-article p {
-  font-size: .95rem;     /* optional: make body text a little larger */
-  color: var(--muted);
-  line-height: 1.5;      /* more relaxed spacing between lines */
-   margin-bottom: 12px;
-}
-  .read-more {
-  font-size: .85rem;
-  font-weight: 700;
-  color: #0b3ea9;
-  text-decoration: none;
-}
-
-main > article {
-  height: calc((100% - (5 * 10px)) / 6);
-}
-
-/* allow vertical scroll on mobile and prevent cutoff */
-html, body {
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-main {
-  height: auto;                     /* allow natural height */
-  min-height: calc(100dvh - 60px);  /* modern viewport fix for mobile */
-}
+    /* Optional: fixed card height if you truly want 6 equal rows */
+    /* main > article { height: calc((100% - (5 * 10px)) / 6); } */
   </style>
+
+  <script>
+    // Always open at top when the page loads (helps inside Qualtrics)
+    if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+    window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+  </script>
 </head>
+
 <body>
   <header><h1>The Hour News</h1></header>
   <main>
