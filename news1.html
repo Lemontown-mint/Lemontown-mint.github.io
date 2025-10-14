@@ -81,11 +81,11 @@
     emit('final_heartbeat', { seconds: seconds });
   });
 })();
-</script>
 <script>
-  window.onload = function() {
-    window.scrollTo(0, 0);
-  };
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
 </script>
     
 </body>
