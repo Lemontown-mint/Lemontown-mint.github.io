@@ -41,7 +41,20 @@
     /* main > article { height: calc((100% - (5 * 10px)) / 6); } */
   </style>
   <script>
-  if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+    // Let browser restore scroll if possible
+    if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  
+    // Fallback: save on leave, restore on return (works in an iframe too)
+    const KEY = 'main_scroll_y';
+    window.addEventListener('pagehide', () => {
+      try { sessionStorage.setItem(KEY, String(window.scrollY)); } catch(e){}
+    });
+    window.addEventListener('pageshow', (e) => {
+      try {
+        const y = parseInt(sessionStorage.getItem(KEY) || '0', 10);
+        if (!isNaN(y)) window.scrollTo(0, y);
+      } catch(e){}
+    });
   </script>
   
 </head>
