@@ -26,28 +26,21 @@
 </head>
 <body>
   <header>
-    <h1>The Struggle for Workplace Gender Equality</h1>
+    <h1>Three Years Left to Limit Global Warming</h1>
   </header>
   <main>
      <p>
-    Women have made notable strides, advancing into leadership roles in government, finance, and science. Trailblazers in these fields reflect how opportunities have widened, yet significant gaps remain.
+      Leading climate scientists’ states that the Earth could breach the critical 1.5C warming threshold within just a few years if carbon emissions continue at current levels. The 1.5C limit was established to avoid the most dangerous impacts of global warming, yet emissions from coal, oil and gas remain near record highs, pushing that goal increasingly out of reach. Remaining global carbon budget has shrunk dramatically as greenhouse gas emissions persist. At current emission rates, it could be exhausted within a short timeframe, effectively causing further warming. 
   </p>
 
   <p>
-    Despite strong achievements in education, women continue to face barriers in health, economic participation, and political representation. They hold only about one-fifth of board seats, despite making up nearly half of entry-level jobs. 
+    Scientists warn that although temporary temperature spikes do not constitute a formal breach, the long-term trend is clear: human-driven warming is accelerating. The planet is now warming at a pace far faster than historical natural changes. Heat is accumulating rapidly in the Earth’s system, with oceans absorbing the majority of excess energy. This intensifies marine disruption, accelerates glacier melt and drives sea-level rise, increasing flood risks for millions living in coastal areas.
   </p>
 
   <p>
-    In the public sector, women have surpassed representation targets in top posts, but private firms continue to lag behind. Experts stress the need for mandatory gender diversity disclosures, quotas, and mentorship programmes to accelerate change.
+    Experts stress that only rapid and substantial emissions cuts can slow the trajectory, every fraction of a degree matters. Immediate action to reduce greenhouse gases is essential to limit worsening extremes, protect vulnerable communities and prevent irreversible climate damage.  
   </p>
 
-  <p>
-    Pay inequality also persists, with women consistently earning less than men. Stereotypes, caregiving responsibilities, and promotion biases deepen this gap, particularly disadvantaging mothers. Advocates highlight the need for stronger parental leave policies, anti-discrimination laws, and reforms to ensure equal access in hiring, pay, and career advancement.
-  </p>
-
-  <p>
-    Education is also seen as critical to shifting attitudes. Reforms that highlight women’s achievements and challenge stereotypes can help instil respect and equality from an early age. As one expert notes, slogans alone are insufficient; lasting change requires transforming mindsets as well as policies.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +59,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
