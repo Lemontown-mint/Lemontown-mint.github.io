@@ -31,24 +31,17 @@
   <main>
     <main>
   <p>
-    Energy Secretary Chris Wright has announced plans to revise past national climate assessment reports, describing them as “too alarmist” and “not fair in broad-based assessments of climate change.”
+    Energy Secretary has announced plans to revise past national climate assessment reports, describing them as “too alarmist” and “not fair in broad-based assessments of climate change.” Since 2000, five assessment reports have been issued, widely cited as comprehensive summaries of projected impacts on health, agriculture, water resources and air quality. Officials say the reports are now under review and updated versions will be released. 
   </p>
 
   <p>
-    Since 2000, five assessment reports have been produced, widely considered authoritative summaries of global warming’s impacts on health, agriculture, water resources, and air quality. Wright said his department is now reviewing those reports and will release updated versions. “When you get into departments and look at stuff that’s there and you find stuff that’s objectionable, you want to fix it,” he said.
+    According to the department, certain conclusions were presented with a level of certainty that did not adequately reflect scientific uncertainties or alternative interpretations of the data. Days before these remarks, the Department of Energy published its own climate report, arguing that concern over the climate crisis has been exaggerated. The document characterised previous assessments as exaggerated and emphasised a more restrained view of climate-related risks.
   </p>
 
   <p>
-    Days before these remarks, the Department of Energy published its own climate report, arguing that concern over the climate crisis has been exaggerated. The document characterised previous assessments as exaggerated and emphasised a more restrained view of climate-related risks.
+    In recent weeks, the federal website hosting the climate assessments was taken offline, further signalling a shift in approach. The changes mark a move toward revising climate reporting to present a less dire interpretation of risks, reshaping a key reference point for climate-related policy and debate and allowing opportunities for economic growth by expanding fossil fuel production.
   </p>
 
-  <p>
-    In recent weeks, the federal website hosting the climate assessments was taken offline, further signalling a shift in approach. Wright has also been a strong supporter of expanding fossil fuel production, which he views as compatible with economic growth.
-  </p>
-
-  <p>
-    The changes mark a move toward revising climate reporting to present a less dire interpretation of risks, reshaping a key reference point for climate-related policy and debate.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -67,14 +60,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
