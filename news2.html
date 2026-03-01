@@ -26,28 +26,21 @@
 </head>
 <body>
   <header>
-    <h1>Energy Department Challenges Exaggerated Climate Change Fears</h1>
+    <h1>Energy Department Challenges Exaggerated Warming Risks</h1>
   </header>
   <main>
     <p>
-    The Energy Department has released a report questioning mainstream climate science and arguing that the risks of global warming are overstated.
+      The Energy Department has released a report questioning mainstream climate science and arguing that the risks of global warming are overstated. The 151-page document, A Critical Review of Impacts of Greenhouse Gas Emissions on the Climate, was authored by five prominent critics. It claims that many scientific assessments exaggerate future warming while overlooking the potential benefits of higher carbon dioxide levels for agriculture and ecosystems. 
   </p>
 
   <p>
-    The 151-page document: A Critical Review of Impacts of Greenhouse Gas Emissions on the U.S. Climate, was authored by five prominent critics, including Steven E. Koonin, John Christy, and Judith Curry. It claims that many scientific assessments exaggerate future warming while overlooking the potential benefits of higher carbon dioxide levels.
+    Among its key arguments are that sea level rise is not accelerating beyond historical averages, that increased CO₂ could boost plant growth, and that computer models consistently exaggerate warming projections. The report also points to solar activity as an “underestimated” driver of recent climate change trends. While it does not deny that carbon dioxide contributes to warming or that ice sheets are melting, the report repeatedly questions the extent of these impacts, stressing uncertainty in long-term predictions and policy implications. 
   </p>
 
   <p>
-    Among its key arguments are that sea level rise is not accelerating beyond historical averages, that increased CO₂ could boost plant growth, and that computer models consistently exaggerate warming projections. The report also points to solar activity as an “underestimated” driver of recent climate change.
+    The findings are already influencing policy; notably, the Environmental Protection Agency is using the report to support its proposal to repeal the 2009 “endangerment finding,” which underpins greenhouse gas regulations for vehicles, power plants, and other major emitters nationwide.
   </p>
 
-  <p>
-    While it does not deny that carbon dioxide contributes to warming or that ice sheets are melting, the report repeatedly questions the extent of these impacts, stressing uncertainty in long-term predictions.
-  </p>
-
-  <p>
-    The findings are already influencing policy. The Environmental Protection Agency is using the report to support its proposal to repeal the 2009 “endangerment finding,” which underpins greenhouse gas regulations for vehicles, power plants, and other major emitters.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +59,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
