@@ -26,28 +26,21 @@
 </head>
 <body>
   <header>
-    <h1>Women in Science Still Face Barriers</h1>
+    <h1>Emerging Environmental Threats Put Humanity at Risk</h1>
   </header>
   <main>
     <p>
-    Despite progress, women make up only one-third of the global scientific community and continue to face major barriers in funding, publishing, and leadership.
+      From ancient microbes awakening in melting glaciers to toxic chemicals released by floods, environmental dangers are no longer distant threats. They are happening now and getting worse. Scientists have identified four urgent areas where environmental damage directly affects humans: melting glacier microbes, hidden pollutants, blocked rivers, and climate risks for older populations.
   </p>
 
   <p>
-    The theme of this year’s International Day of Women and Girls in Science, Unpacking STEM Careers: Her Voice in Science, highlighted the urgency of ensuring equal opportunities. Education remains central, yet millions of girls worldwide remain out of school. Even those who study often encounter stereotypes discouraging them from scientific careers.
+    Glaciers around the world are shrinking fast and could disappear this century without urgent action. Their meltwater can cause severe floods and release long-frozen bacteria. Most of these microbes are harmless, but some could pose health risks. Flooding is uncovering another hidden danger as pollutants trapped in soil for decades are released. When floods hit, toxic materials such as heavy metals and industrial chemicals can leak into rivers and farmland. Restoring natural wetlands and cleaning up contaminated soil are crucial to reduce these risks.
   </p>
 
   <p>
-    Progress has stalled in many areas. Only about 15% of young women pursue STEM disciplines, compared to more than twice that figure for men. Limited female participation, particularly in artificial intelligence, leads to biased technologies and lost opportunities for innovation and growth.
+    Rivers are also suffering from drought and man-made dams, which block water flow and harm wildlife. Removing some dams and restoring rivers can bring ecosystems back to life, but this must happen alongside broader climate action. Older adults are especially vulnerable to extreme heat, pollution, and disasters. As the global population ages, better protection and adaptation plans will be crucial to keep communities safe. 
   </p>
 
-  <p>
-    Experts stress the need for gender-sensitive teacher training, mentorship programmes, and greater investment in STEM education. Increasing women’s participation in technology and science could significantly strengthen global economies and improve inclusivity in innovation.
-  </p>
-
-  <p>
-    The event also featured inspiring accounts from female astronauts, underscoring how representation can spark ambition. Speakers emphasized that tackling global challenges, from climate change to public health, requires the full participation of women and girls in science.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +59,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
