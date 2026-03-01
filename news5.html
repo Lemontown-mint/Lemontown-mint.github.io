@@ -26,28 +26,21 @@
 </head>
 <body>
   <header>
-    <h1>Scientist Warns of New Heat Records Ahead</h1>
+    <h1>Extreme Weather Threatens Malaysia’s Food Security</h1>
   </header>
   <main>
   <p>
-    There is an 80% chance global temperatures will break at least one annual heat record in the next five years, raising risks of extreme droughts, floods, and wildfires that threaten lives and homes.
+    Agriculture remains central to Malaysia’s economy and identity, yet climate change is placing the sector under increasing strain. Rising temperatures, erratic rainfall, floods and prolonged droughts are disrupting food production and distribution, weakening supply chains nationwide and reducing overall agricultural productivity and long-term stability.
   </p>
 
   <p>
-    For the first time, data also suggest a small chance, about 1%, that before 2030 the world could see a year 2°C hotter than preindustrial levels, a milestone once considered far off.
+    Recent severe flooding across Johor, Melaka, Perak, Kelantan and Terengganu have destroyed over 100 hectares of farmland, causing vegetable prices to surge by 50–80%. Prices of common vegetables such as sawi, bayam and kangkung rose from RM3.50 to RM8.00 per kilogram, while red peppers increased to RM22.00. Overall, food prices recorded a 2.6% year-on-year increase, highlighting how climate-related disruptions are straining Malaysia’s food supply chain and limiting access to nutritious food for households nationwide.
   </p>
 
   <p>
-    The latest update warns of growing risks to health, economies, and nature unless we rapidly cut coal, oil, gas, and deforestation. It projects a 70% chance that average temperatures from 2025 to 2029 will be over 1.5°C above preindustrial levels, breaking the widely accepted climate limit.
+    To safeguard food security, Malaysia must invest in climate-adaptive farming practices, including flood-tolerant crops, precision agriculture and early warning systems to protect production from increasingly extreme weather patterns. Coordinated efforts across government, farmers and communities are essential to build a more resilient and sustainable food system. Addressing climate change is no longer optional — it is vital to securing Malaysia’s food future.
   </p>
 
-  <p>
-    The odds of exceeding 1.5°C in at least one of the next five years have risen to 86%, up from 40% a few years ago. Last year was the hottest on record, showing how quickly conditions are changing.
-  </p>
-
-  <p>
-    Arctic winters are also predicted to warm more than three times faster than the global average, while many regions face worsening droughts or heavier rainfall. Scientists stress that urgent emission cuts are needed now to avoid more dangerous warming and reduce future harm.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +59,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
