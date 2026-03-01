@@ -26,28 +26,21 @@
 </head>
 <body>
   <header>
-    <h1>Global Growth Forecast Slows to 2.3%</h1>
+    <h1>Space-Saving Furniture for Compact Living</h1>
   </header>
   <main>
      <p>
-    The global economy is projected to slow to 2.3% growth in 2025, slipping below the 2.5% level often associated with recessionary conditions.
+      When space is limited in a small flat or apartment, choosing the right furniture can significantly improve comfort and organisation. Smart, space-efficient pieces help create a functional living area without unnecessary clutter.
   </p>
 
   <p>
-    The downturn is being driven by escalating trade tensions, financial volatility, and rising policy uncertainty. These factors have disrupted supply chains, delayed investment decisions, and weakened hiring, creating what analysts describe as a recessionary trajectory. This marks a sharp deceleration from already sluggish growth seen before the pandemic.
+    Experts recommend multi-purpose and slim-profile furniture designed for compact lifestyles. Items with built-in storage, such as platform beds, lift-up beds or storage sofas, make use of underutilised space for clothes, linens and household items. Coffee tables, benches and ottomans with hidden compartments also add practical storage while maintaining a tidy appearance.
   </p>
 
   <p>
-    Vulnerabilities are particularly evident in developing regions, where high debt levels, external pressures, and weakening domestic growth pose serious risks. Some economists warn these conditions could form a “perfect storm” of challenges that threaten stability.
+    Foldable, modular or expandable furniture offers flexibility. Drop-leaf dining tables, nesting tables, stackable chairs and folding desks allow rooms to serve multiple purposes, such as dining, working or relaxing. When not needed, they can be stored away to free up floor space. Vertical solutions are also effective. Tall shelving units, wall-mounted cabinets and floating shelves maximise storage without taking up valuable room. Slim sofas and chairs with raised legs or narrow frames help create an open feel, while light colours and transparent materials enhance brightness. Selecting functional, adaptable furniture helps maximise limited space while maintaining practicality and flexibility.
   </p>
 
-  <p>
-    At the same time, new opportunities are emerging. Regional economic integration and stronger trade between developing markets are increasingly viewed as potential sources of resilience. Analysts argue that such collaboration, alongside more consistent international coordination, is critical to restoring confidence and supporting long-term development.
-  </p>
-
-  <p>
-    The report emphasizes that timely, coordinated policy action will be essential to prevent deeper declines in global growth and to ensure weaker economies are not left behind.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +59,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
