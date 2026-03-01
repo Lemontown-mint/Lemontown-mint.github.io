@@ -26,28 +26,22 @@
 </head>
 <body>
   <header>
-    <h1>False Alarms: Climate Scare Stories Debunked</h1>
+    <h1>False Alarms: Environmental Scare Stories Debunked</h1>
   </header>
   <main>
     <p>
-    For more than 20 years, climate campaigning has relied heavily on alarming imagery and dire predictions. At the turn of the century, the polar bear became a symbol of climate apocalypse, with Al Gore’s An Inconvenient Truth showing one drifting to its death. Activists warned of polar bears’ extinction by 2012, yet global numbers have doubled since the 1960s to around 26,000, largely due to reduced hunting.
+      For more than 20 years, climate campaigning has relied heavily on alarming imagery and dire predictions. At the turn of the century, the polar bear became the emblem of climate apocalypse, as activists warned that polar bears could face extinction by 2012. Yet global populations have increased from roughly 12,000 in the 1960s to around 26,000 today. 
   </p>
 
   <p>
-    Similar predictions surrounded Australia’s Great Barrier Reef. In 2012, media and scientists claimed it would be devastated within a decade. The Guardian even ran an obituary. Yet official data show coral cover at record highs in the past three years, with 2024 the best since monitoring began in 1985.
+    Similar predictions have also surrounded Australia’s Great Barrier Reef. In 2012, media outlets and scientists warned it would be devastated within a decade. One major newspaper even published an obituary for the reef. However, official data now show coral cover at record highs in recent years, with the latest figures marking the strongest recovery since monitoring began in 1985.
   </p>
 
   <p>
-    For decades, campaigners warned that Pacific islands like Tuvalu were sinking. But research indicates most coral islands are expanding, with land area increasing as coral sand builds faster than erosion.
+    These examples illustrate a recurring pattern: dramatic forecasts dominate headlines, while later evidence receives far less attention. Each new climate “emergency” replaces the last when earlier claims prove overstated. Such exaggeration fosters public fear, discourages critical debate and reinforces costly policy decisions built on worst-case scenarios. When predictions repeatedly fail to materialise as promised, it raises legitimate questions about the credibility of climate alarmism itself.
   </p>
 
-  <p>
-    More recently, extreme heat has become the headline threat. While heat kills about 6,000 Americans annually, extreme cold claims around 152,000 lives, and heat-related deaths have declined nearly 10% per decade thanks to air conditioning.
-  </p>
-
-  <p>
-    These examples suggest that climate dangers are often overstated, fuelling costly policies driven more by fear than evidence.
-  </p>
+  
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +60,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
