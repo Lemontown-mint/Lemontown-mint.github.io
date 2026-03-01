@@ -26,28 +26,21 @@
 </head>
 <body>
   <header>
-    <h1>Emerging Climate Threats Put Humanity at Risk</h1>
+    <h1>Climate Change Supercharges Monsoon Flooding</h1>
   </header>
   <main>
   <p>
-    From ancient microbes awakening in melting glaciers to toxic chemicals released by floods, environmental dangers are no longer distant threats. They are happening now and getting worse. Scientists have identified four urgent areas where environmental damage directly affects humans: melting glacier microbes, hidden pollutants, blocked rivers, and climate risks for older populations.
+    Climate change is intensifying extreme weather, with serious consequences for lives, livelihoods and economic stability. Scientists report that human-caused global heating has made monsoon downpours heavier and flooding more severe, contributing to deadly storms that claimed more than 1,750 lives across the region. While monsoon rains are a seasonal norm, researchers stress that the scale and intensity of recent events are far from typical.
   </p>
 
   <p>
-    Glaciers around the world are shrinking fast and could disappear this century without urgent action. Their meltwater can cause severe floods and release long-frozen bacterias. Most of these microbes are harmless, but some could pose health risks. 
+    In Malaysia, powerful cyclones and torrential rainfall inundated communities, damaging infrastructure and disrupting economic activities. Scientific analysis found that five-day episodes of heavy rain have become significantly more intense due to global heating, as warmer air holds more moisture and fuels heavier downpours. This heightened rainfall increases flood risks, overwhelms drainage systems and threatens vulnerable low-lying areas.
   </p>
 
   <p>
-    Flooding is uncovering another hidden danger as pollutants trapped in soil for decades are released. When floods hit, toxic materials such as heavy metals and industrial chemicals can leak into rivers and farmland. Restoring natural wetlands and cleaning up contaminated soil are crucial to reduce these risks.
+    Beyond the immediate fatalities and destruction, extreme storms leave lasting impacts on public health, housing and livelihoods, with vulnerable communities bearing the greatest burden. These events underscore a clear warning for Malaysia: climate change is amplifying rainfall extremes and flood risks. Reducing reliance on fossil fuels, strengthening adaptation measures and improving disaster preparedness are critical to limiting future losses and protecting communities from increasingly severe climate-driven storms.
   </p>
 
-  <p>
-    Rivers are also suffering from drought and man-made dams, which block water flow and harm wildlife. Removing some dams and restoring rivers can bring ecosystems back to life, but this must happen alongside broader climate action.
-  </p>
-
-  <p>
-    Older adults are especially vulnerable to extreme heat, pollution, and disasters. As the global population ages, better protection and adaptation plans will be crucial to keep communities safe.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +59,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
