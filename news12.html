@@ -26,28 +26,21 @@
 </head>
 <body>
   <header>
-    <h1>Three to Five Cups Coffee Boost Health</h1>
+    <h1>Daily Life Within Shared Communal Living Spaces</h1>
   </header>
   <main>
    <p>
-    A recent review suggests that drinking three to five cups of coffee daily is linked to longer life and reduced risk of major diseases, including heart disease, stroke, type 2 diabetes, dementia, and certain cancers.
+    As living costs rise and loneliness becomes a growing global issue, intentional communities and co-living arrangements are gaining popularity. With high housing and rental prices, especially in major cities, more people are exploring communal living as an alternative to traditional housing. Growing recognition of loneliness as a public health concern has further highlighted the appeal of shared living spaces.
   </p>
 
   <p>
-    For most adults, moderate coffee consumption appears both safe and beneficial. Plain coffee is naturally low in calories, and multiple studies show reduced mortality among regular drinkers. One large analysis found the lowest risk at about three and a half cups per day, with both decaf and caffeinated coffee showing similar benefits.
+    One resident, a 30-year-old food writer based in London, moved into a warehouse-style communal home after a personal life change in 2020. She now lives with six others in their late twenties and early thirties. Unlike typical shared housing, their home operates with structured systems: each member contributes a weekly amount to cover shared expenses, and one person cooks dinner each night. They use group chats to coordinate meals and guests, and hold regular house meetings to address chores and concerns before tensions build.
   </p>
 
   <p>
-    Research highlights include a 10–15% reduction in overall mortality, a 15% lower risk of cardiovascular disease, and protection against cognitive decline, Parkinson’s, and some respiratory conditions. Coffee may also reduce risks of depression and falls, while offering modest benefits for liver and kidney health.
+    She says the greatest benefit is constant companionship and a sense of family, particularly in a city where affordable housing is scarce. However, communal living also presents challenges, including limited privacy, noise, and sharing facilities such as bathrooms and a single washing machine. 
   </p>
 
-  <p>
-    However, the review notes potential caveats. Excessive consumption may cause anxiety, sleep issues, or palpitations, and pregnant women are advised to limit caffeine. Additives such as sugar may reduce protective effects, though small amounts of cream or milk substitutes show little harm.
-  </p>
-
-  <p>
-    Overall, evidence suggests that coffee, particularly when consumed black or lightly sweetened, offers more health benefits than risks, supporting its role in longevity and disease prevention.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +59,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
