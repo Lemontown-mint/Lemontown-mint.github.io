@@ -26,28 +26,21 @@
 </head>
 <body>
   <header>
-    <h1>Three Years Left to Limit Global Warming</h1>
+    <h1>Economic Stability Takes Priority Over Carbon Restrictions</h1>
   </header>
   <main>
    <p>
-    More than 60 leading scientists warn that the world could exceed the 1.5°C global warming limit within the next three years if carbon dioxide emissions continue at today’s pace.
+    Climate change may be a long-term issue, but for many it does not outweigh immediate economic realities. In tough economic times, safeguarding growth, keeping energy affordable and protecting livelihoods naturally take precedence. Expensive environmental ambitions risk sounding detached from reality when economic stability is on the line. With households squeezed by rising prices and economic uncertainty, climate policy is increasingly being judged by its cost rather than its promises.
   </p>
 
   <p>
-    In 2020, scientists estimated that the world could emit about 500 billion tonnes more carbon dioxide and still have a 50% chance of staying below 1.5°C. By early 2025, that “carbon budget” had shrunk to just 130 billion tonnes because emissions had accelerated. With the world releasing around 40 billion tonnes each year, this budget could run out in about three years.
+     A recent survey shows that many Malaysians are uneasy about the economic fallout of aggressive emissions cuts. About one-third of respondents said limiting fossil fuel use could harm the global economy more than climate change itself. A similar share expressed concern that a rapid shift to renewable energy might increase blackouts and destabilise electricity supply. These concerns reflect common sense priorities: reliable power, steady employment and affordable living costs.
   </p>
 
   <p>
-    Last year was the first time global temperatures stayed above 1.5°C for an entire year, mainly due to human-driven warming. The current rate of temperature rise, about 0.27°C per decade, is faster than anything seen in Earth’s history.
+    Doubts also surround the effectiveness of popular climate solutions. More than a quarter of Malaysians questioned whether electric vehicles are truly better for the environment than conventional cars. When the benefits appear uncertain, the case for costly transitions becomes harder to defend.
   </p>
 
-  <p>
-    About 90% of the extra heat is absorbed by the oceans, harming marine life and speeding up sea-level rise, which has doubled since the 1990s.
-  </p>
-
-  <p>
-    Scientists say the world cannot rely on future carbon removal technologies to fix the problem. Rapid and deep emission cuts are needed now, as every fraction of a degree avoided will reduce future harm.
-  </p>
     <p><a href="index.html">← Back to Home</a></p>
   </main>
 
@@ -66,14 +59,14 @@
   // 1) page view
   emit('page_view', {});
 
-  // 2) dwell time heartbeat (every 5s)
+  // 2) dwell time heartbeat (every 1s)
   var visible = true;
   var seconds = 0;
   var hb = setInterval(function () {
     if (!visible) return;
-    seconds += 5;
+    seconds += 1;
     emit('heartbeat', { seconds: seconds });
-  }, 5000);
+  }, 1000);
 
   document.addEventListener('visibilitychange', function () {
     visible = (document.visibilityState === 'visible');
