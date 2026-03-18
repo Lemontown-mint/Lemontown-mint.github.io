@@ -5,162 +5,419 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Hour News</title>
   <style>
-    :root { --blue:#1f65c2; --text:#111827; --muted:#4b5563; --bg:#fff; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-
-    /* Mobile-friendly scrolling inside the iframe */
-    html, body {
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  color: var(--text);
-  background: var(--bg);
-}
-
-    header { background: var(--blue); color:#fff; padding:10px 20px; }
-    header h1 { font-size:2.5rem; font-weight:700; }
-
-    main {
-      height: auto;                               /* allow natural height */
-      min-height: calc(100dvh - 60px);            /* viewport-safe on mobile */
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      padding: 10px 20px;
+    :root {
+      --blue: #1f65c2;
+      --text: #111827;
+      --muted: #4b5563;
+      --bg: #ffffff;
+      --line: #d1d5db;
     }
 
-    article { display:flex; flex-direction:column; }
-    article h3 { font-size:1.2rem; font-weight:700; margin-bottom:8px; }
-    article p { font-size:.95rem; color:var(--muted); line-height:1.5; margin-bottom:12px; }
-    .read-more { font-size:.85rem; font-weight:700; color:#0b3ea9; text-decoration:none; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Optional: fixed card height if you truly want 6 equal rows */
-    /* main > article { height: calc((100% - (5 * 10px)) / 6); } */
+    html, body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #fff;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 20px 12px;
+    }
+
+    header h1 {
+      font-family: Arial, sans-serif;
+      color: var(--blue);
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .top-strip {
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-family: Arial, sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .nav a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .page-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr;
+      gap: 28px;
+      padding: 20px;
+      align-items: start;
+    }
+
+    .sidebar {
+      border-right: 1px solid var(--line);
+      padding-right: 18px;
+    }
+
+    .sidebar h2 {
+      font-family: Arial, sans-serif;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #234;
+      margin-bottom: 12px;
+    }
+
+    .featured-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--line);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-caption {
+      font-size: 0.95rem;
+      line-height: 1.35;
+      color: #333;
+      margin-bottom: 22px;
+    }
+
+    .sidebar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sidebar-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .sidebar-thumb {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      display: block;
+    }
+
+    .sidebar-item p {
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.25;
+      color: #222;
+    }
+
+    .article-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    article {
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    article h3 {
+      font-size: 1.9rem;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    article p {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .read-more {
+      font-family: Arial, sans-serif;
+  font-size: 0.92rem;
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding-right: 0;
+        padding-bottom: 20px;
+      }
+    }
   </style>
+
   <script>
-    // Let browser restore scroll if possible
     if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
-  
-    // Fallback: save on leave, restore on return (works in an iframe too)
+
     const KEY = 'main_scroll_y';
     window.addEventListener('pagehide', () => {
       try { sessionStorage.setItem(KEY, String(window.scrollY)); } catch(e){}
     });
-    window.addEventListener('pageshow', (e) => {
+    window.addEventListener('pageshow', () => {
       try {
         const y = parseInt(sessionStorage.getItem(KEY) || '0', 10);
         if (!isNaN(y)) window.scrollTo(0, y);
       } catch(e){}
     });
   </script>
-  
 </head>
 
 <body>
-  <header><h1>The Hour News</h1></header>
-  <main>
-    <article><h3>Energy Secretary Rejects Alarming Climate Report Findings</h3><p>Energy Department signalled plans to revise past National Climate Assessments, arguing they were too alarmist and promising updated reports with a more restrained view of climate risks.</p><a class="read-more" href="news1.html">Read More</a></article>
-    <article><h3>Energy Department Challenges Exaggerated Warming Risks</h3><p>The Energy Department’s new review argues climate risks are overstated, questions accelerating sea level rise, highlights CO₂ benefits for crops, and challenges warming projections from climate models.</p><a class="read-more" href="news2.html">Read More</a></article>
-    <article><h3>False Alarms: Environmental Scare Stories Debunked</h3><p>From polar bears to coral reefs, recurring climate scare stories have repeatedly fallen short of reality, revealing inflated threats and the expensive policies justified by fear.</p><a class="read-more" href="news3.html">Read More</a></article>
-    <article><h3>Economic Stability Takes Priority Over Carbon Restrictions</h3><p>As Malaysia faces mounting economic strain, economic growth is seen as more urgent and higher in priority than costly climate change efforts with uncertain returns.</p><a class="read-more" href="news4.html">Read More</a></article>
-    <article><h3>Extreme Weather Threatens Malaysia’s Food Security</h3><p>Climate change is intensifying floods, droughts and extreme weather, disrupting agricultural production and food distribution, straining supply chains and threatening Malaysia’s long-term food security and affordability.</p><a class="read-more" href="news5.html">Read More</a></article>
-    <article><h3>Climate Change Supercharges Monsoon Flooding</h3><p>Climate change is intensifying monsoon rainfall and extreme storms in Malaysia, increasing flood risks, endangering lives, disrupting livelihoods and placing growing pressure on infrastructure and economic stability.</p><a class="read-more" href="news6.html">Read More</a></article>
-    <article><h3>Three Years Left to Limit Global Warming</h3><p>Scientists warn that the remaining carbon budget is shrinking fast, with three years left at current emissions before breaching the symbolic 1.5°C warming limit.</p><a class="read-more" href="news7.html">Read More</a></article>
-    <article><h3>Emerging Environmental Threats Put Humanity at Risk</h3><p>Recent report warns that melting glaciers, toxic flood pollutants, river degradation, and ageing populations are meeting growing threats that demand urgent global action and preparedness.</p><a class="read-more" href="news8.html">Read More</a></article>
-    <article><h3>Space-Saving Furniture for Compact Living</h3><p>Smart, flexible and space-efficient furniture helps small apartments feel organised and comfortable, allowing residents to maximise storage, adapt rooms for multiple uses and maintain a clutter-free living environment.</p><a class="read-more" href="news9.html">Read More</a></article>
-    <article><h3>Finger Counting Improves Children’s Math Learning</h3><p>Long-term research shows that children who use their fingers to learn arithmetic develop stronger calculation skills over time, with early finger counting supporting later success in mental mathematics.</p><a class="read-more" href="news10.html">Read More</a></article>
-    <article><h3>Beautiful-Sounding Words Boost Word Retention</h3><p>Researchers find that invented words with more pleasant, melodious sounds are remembered more easily, revealing a strong link between euphony, perception of beauty, and language learning.</p><a class="read-more" href="news11.html">Read More</a></article>
-    <article><h3>Daily Life Within Shared Communal Living Spaces</h3><p>As housing costs soar and loneliness rises, more people are turning to co-living communities, finding shared support, cooperation, and companionship alongside the challenges of privacy and space.</p><a class="read-more" href="news12.html">Read More</a></article>
+  <header>
+    <div class="top-strip">March 26 | WEATHER | TRAFFIC | NEWSLETTER</div>
+    <h1>The Hour News</h1>
+    <nav class="nav">
+      <a href="#">News</a>
+      <a href="#">Business</a>
+      <a href="#">Tech</a>
+      <a href="#">World</a>
+      <a href="#">Opinion</a>
+      <a href="#">Politics</a>
+      <a href="#">Health</a>
+      <a href="#">Culture</a>
+      <a href="#">Science</a>
+    </nav>
+  </header>
+
+  <main class="page-layout">
+    <!-- LEFT SIDEBAR WITH IMAGES -->
+    <aside class="sidebar">
+  <h2>Top Stories</h2>
+
+  <img class="featured-image" src="https://picsum.photos/seed/topstory/400/300" alt="Featured news image">
+  <p class="sidebar-caption">
+    Major developments continue to shape public discussion as experts weigh in on emerging risks, policy decisions and social reactions.
+  </p>
+
+  <div class="sidebar-list">
+    <div class="sidebar-item">
+      <img class="sidebar-thumb" src="https://picsum.photos/seed/thumb1/80/80" alt="Story thumbnail">
+      <p>Government officials respond to growing public pressure over recent national policy decisions.</p>
+    </div>
+
+    <div class="sidebar-item">
+      <img class="sidebar-thumb" src="https://picsum.photos/seed/thumb2/80/80" alt="Story thumbnail">
+      <p>Analysts warn that misinformation continues to distort how complex social issues are understood.</p>
+    </div>
+
+    <div class="sidebar-item">
+      <img class="sidebar-thumb" src="https://picsum.photos/seed/thumb3/80/80" alt="Story thumbnail">
+      <p>Public attitudes remain sharply divided as debates intensify across media platforms.</p>
+    </div>
+
+    <div class="sidebar-item">
+      <img class="sidebar-thumb" src="https://picsum.photos/seed/thumb4/80/80" alt="Story thumbnail">
+      <p>Researchers highlight the long-term importance of how news framing affects public perception.</p>
+    </div>
+
+    <div class="sidebar-item">
+      <img class="sidebar-thumb" src="https://picsum.photos/seed/thumb5/80/80" alt="Story thumbnail">
+      <p>Regional leaders call for broader cooperation as pressure builds around social and economic issues.</p>
+    </div>
+  </div>
+</aside>
+
+    <!-- COLUMN 1 -->
+    <section class="article-column" id="col-left">
+      <article><h3>Energy Secretary Rejects Alarming Climate Report Findings</h3><p>Energy Department signalled plans to revise past National Climate Assessments, arguing they were too alarmist and promising updated reports with a more restrained view of climate risks.</p><a class="read-more" href="news1.html">read more...</a></article>
+
+      <article><h3>False Alarms: Environmental Scare Stories Debunked</h3><p>From polar bears to coral reefs, recurring climate scare stories have repeatedly fallen short of reality, revealing inflated threats and the expensive policies justified by fear.</p><a class="read-more" href="news3.html">read more...</a></article>
+
+      <article><h3>Extreme Weather Threatens Malaysia’s Food Security</h3><p>Climate change is intensifying floods, droughts and extreme weather, disrupting agricultural production and food distribution, straining supply chains and threatening Malaysia’s long-term food security and affordability.</p><a class="read-more" href="news5.html">read more...</a></article>
+
+      <article><h3>Three Years Left to Limit Global Warming</h3><p>Scientists warn that the remaining carbon budget is shrinking fast, with three years left at current emissions before breaching the symbolic 1.5°C warming limit.</p><a class="read-more" href="news7.html">read more...</a></article>
+
+      <article><h3>Space-Saving Furniture for Compact Living</h3><p>Smart, flexible and space-efficient furniture helps small apartments feel organised and comfortable, allowing residents to maximise storage, adapt rooms for multiple uses and maintain a clutter-free living environment.</p><a class="read-more" href="news9.html">read more...</a></article>
+
+      <article><h3>Beautiful-Sounding Words Boost Word Retention</h3><p>Researchers find that invented words with more pleasant, melodious sounds are remembered more easily, revealing a strong link between euphony, perception of beauty, and language learning.</p><a class="read-more" href="news11.html">read more...</a></article>
+    </section>
+
+    <!-- COLUMN 2 -->
+    <section class="article-column" id="col-right">
+      <article><h3>Energy Department Challenges Exaggerated Warming Risks</h3><p>The Energy Department’s new review argues climate risks are overstated, questions accelerating sea level rise, highlights CO₂ benefits for crops, and challenges warming projections from climate models.</p><a class="read-more" href="news2.html">read more...</a></article>
+
+      <article><h3>Economic Stability Takes Priority Over Carbon Restrictions</h3><p>As Malaysia faces mounting economic strain, economic growth is seen as more urgent and higher in priority than costly climate change efforts with uncertain returns.</p><a class="read-more" href="news4.html">read more...</a></article>
+
+      <article><h3>Climate Change Supercharges Monsoon Flooding</h3><p>Climate change is intensifying monsoon rainfall and extreme storms in Malaysia, increasing flood risks, endangering lives, disrupting livelihoods and placing growing pressure on infrastructure and economic stability.</p><a class="read-more" href="news6.html">read more...</a></article>
+
+      <article><h3>Emerging Environmental Threats Put Humanity at Risk</h3><p>Recent report warns that melting glaciers, toxic flood pollutants, river degradation, and ageing populations are meeting growing threats that demand urgent global action and preparedness.</p><a class="read-more" href="news8.html">read more...</a></article>
+
+      <article><h3>Finger Counting Improves Children’s Math Learning</h3><p>Long-term research shows that children who use their fingers to learn arithmetic develop stronger calculation skills over time, with early finger counting supporting later success in mental mathematics.</p><a class="read-more" href="news10.html">read more...</a></article>
+
+      <article><h3>Daily Life Within Shared Communal Living Spaces</h3><p>As housing costs soar and loneliness rises, more people are turning to co-living communities, finding shared support, cooperation, and companionship alongside the challenges of privacy and space.</p><a class="read-more" href="news12.html">read more...</a></article>
+    </section>
   </main>
 
-  <script>
+<script>
 (function () {
-  /* ---------- Shuffle the articles (once per session/tab) ---------- */
-  var container = document.querySelector('main');          // or '.news-grid' if you use that class
-  if (container) {
-    var cards = Array.prototype.slice.call(container.querySelectorAll('article'));
-    if (cards.length) {
-      // keys from href (preferred) or title numbers
-      var keys = cards.map(function(card){
-        var link = card.querySelector('a.read-more');
-        var href = link ? (link.getAttribute('href') || '') : '';
-        var mHref = href.match(/news(\d+)/);
-        if (mHref) return mHref[1];
-        var h3 = card.querySelector('h3');
-        var t = h3 ? h3.textContent : '';
-        var mTitle = t.match(/\d+/);
-        return mTitle ? mTitle[0] : '';
-      });
-
-      var ORDER_KEY = 'newsOrder_v1';
-      var order = null;
-      try { order = JSON.parse(sessionStorage.getItem(ORDER_KEY) || 'null'); } catch(e){}
-
-      if (!order || order.length !== cards.length) {
-        order = keys.slice();
-        for (var i = order.length - 1; i > 0; i--) {
-          var j = Math.floor(Math.random() * (i + 1));
-          var tmp = order[i]; order[i] = order[j]; order[j] = tmp;
-        }
-        try { sessionStorage.setItem(ORDER_KEY, JSON.stringify(order)); } catch(e){}
-      }
-
-      // re-append in that order
-      var byKey = {};
-      for (var k = 0; k < cards.length; k++) {
-        byKey[keys[k]] = cards[k];
-        var lnk = cards[k].querySelector('a.read-more');
-        if (lnk && keys[k]) lnk.setAttribute('data-index', keys[k]);
-      }
-      for (var n = 0; n < order.length; n++) {
-        var key = order[n];
-        if (byKey[key]) container.appendChild(byKey[key]);
-      }
-
-      // (Optional) tell Qualtrics the order you showed
-      emit('order_shown', { order: order });
-    }
-  }
-
-  /* ---------- Tracker: page_view, read_more_click, heartbeat, final_heartbeat ---------- */
   function emit(name, payload) {
     try {
-      var base = { href: location.href, path: location.pathname, title: document.title };
-      if (payload) for (var k in payload) if (Object.prototype.hasOwnProperty.call(payload, k)) base[k] = payload[k];
-      window.parent.postMessage({ type: 'news_event', name: name, payload: base, t: Date.now() }, '*');
+      var base = {
+        href: location.href,
+        path: location.pathname,
+        title: document.title
+      };
+
+      if (payload) {
+        for (var k in payload) {
+          if (Object.prototype.hasOwnProperty.call(payload, k)) {
+            base[k] = payload[k];
+          }
+        }
+      }
+
+      window.parent.postMessage({
+        type: 'news_event',
+        name: name,
+        payload: base,
+        t: Date.now()
+      }, '*');
     } catch (e) {}
   }
 
-  // 1) page view
+  /* ---------- Shuffle MAIN ARTICLES only ---------- */
+  var leftCol = document.getElementById('col-left');
+  var rightCol = document.getElementById('col-right');
+  var ORDER_KEY = 'newsOrder_v1';
+  var order = [];
+
+  if (leftCol && rightCol) {
+    var cards = Array.prototype.slice.call(
+      document.querySelectorAll('#col-left article, #col-right article')
+    );
+
+    if (cards.length) {
+      var items = cards.map(function (card, idx) {
+        var link = card.querySelector('a.read-more');
+        var href = link ? (link.getAttribute('href') || '') : '';
+        var match = href.match(/news(\d+)/i);
+        var key = match ? match[1] : String(idx + 1);
+
+        if (link) {
+          link.setAttribute('data-index', key);
+        }
+
+        return {
+          key: key,
+          card: card
+        };
+      });
+
+      try {
+        order = JSON.parse(sessionStorage.getItem(ORDER_KEY) || 'null');
+      } catch (e) {
+        order = null;
+      }
+
+      if (!Array.isArray(order) || order.length !== items.length) {
+        order = items.map(function (item) { return item.key; });
+
+        for (var i = order.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = order[i];
+          order[i] = order[j];
+          order[j] = temp;
+        }
+
+        try {
+          sessionStorage.setItem(ORDER_KEY, JSON.stringify(order));
+        } catch (e) {}
+      }
+
+      var byKey = {};
+      for (var n = 0; n < items.length; n++) {
+        byKey[String(items[n].key)] = items[n].card;
+      }
+
+      leftCol.innerHTML = '';
+      rightCol.innerHTML = '';
+
+      for (var x = 0; x < order.length; x++) {
+        var card = byKey[String(order[x])];
+        if (!card) continue;
+
+        if (x < Math.ceil(order.length / 2)) {
+          leftCol.appendChild(card);
+        } else {
+          rightCol.appendChild(card);
+        }
+      }
+    }
+  }
+
+  /* ---------- Tracking ---------- */
+  emit('order_shown', { order: Array.isArray(order) ? order.join(',') : '' });
   emit('page_view', {});
 
-  // 2) read-more clicks (on list pages)
   try {
-    var list = document.querySelectorAll('article');
+    var list = document.querySelectorAll('#col-left article, #col-right article');
+
     for (var i2 = 0; i2 < list.length; i2++) {
-      (function (idx) { 
+      (function (idx) {
         var card = list[idx];
-        var link = card.querySelector('.read-more') || card.querySelector('a.read-more');
+        var link = card.querySelector('a.read-more');
         var h3 = card.querySelector('h3');
-        var title = (h3 ? (h3.textContent || '') : '').trim() || ('News #' + (idx + 1));
+        var title = h3 ? h3.textContent.trim() : 'News #' + (idx + 1);
+
         if (link) {
           link.addEventListener('click', function () {
-            // prefer any data-index from the shuffle; fall back to visual idx+1
             var di = link.getAttribute('data-index');
-            var indexToSend = di ? di : (idx + 1);
-            emit('read_more_click', { index: indexToSend, article_title: title, target: link.getAttribute('href') || '' });
+            var indexToSend = di ? di : String(idx + 1);
+
+            emit('read_more_click', {
+              index: indexToSend,
+              article_title: title,
+              target: link.getAttribute('href') || ''
+            });
           });
         }
       })(i2);
     }
   } catch (e) {}
 
-  // 3) dwell time heartbeat
-  var visible = true;
+  /* ---------- Dwell time ---------- */
+  var visible = document.visibilityState !== 'hidden';
   var seconds = 0;
+
   var hb = setInterval(function () {
     if (!visible) return;
     seconds += 1;
@@ -171,15 +428,12 @@
     visible = (document.visibilityState === 'visible');
   });
 
-  // 4) final flush
   window.addEventListener('pagehide', function () {
-    try { clearInterval(hb); } catch (e) {}
+    clearInterval(hb);
     emit('final_heartbeat', { seconds: seconds });
   });
-
 })();
 </script>
-
 
 </body>
 </html>
